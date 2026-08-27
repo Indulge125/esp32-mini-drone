@@ -1,0 +1,16 @@
+# 本地存档压缩包（内容与 source/ 重复）
+downloads/
+*.rar
+
+# 根目录本地编辑器配置（source/ 内上游自带的 .vscode 保留入库）
+/.vscode/
+
+# 上游 CI 工作流：引用不存在的 flix/ 目录，保持排除以避免 Actions 持续失败
+source/flix-v1.2-20260325/.github/
+
+# 临时与系统文件
+/.zcode/
+__pycache__/
+*.log
+Thumbs.db
+.DS_Store

@@ -4,7 +4,7 @@
 [![Framework](https://img.shields.io/badge/Framework-Arduino-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
 [![IMU](https://img.shields.io/badge/IMU-MPU6050-blue)](https://invensense.tdk.com/products/mpu-6050/)
 [![Protocol](https://img.shields.io/badge/Protocol-MAVLink%20over%20UDP-informational)](https://mavlink.io/)
-[![Status](https://img.shields.io/badge/%E5%A4%8D%E5%88%BB%E8%BF%9B%E5%B1%95-%E7%A1%AC%E4%BB%B6%E6%90%AD%E5%BB%BA%E4%B8%AD-yellow)](#-复刻进度)
+[![Status](https://img.shields.io/badge/%E5%A4%8D%E5%88%BB%E5%AE%8C%E6%88%90-%E5%B7%B2%E5%AE%8C%E6%88%90-brightgreen)](#-复刻进度)
 
 基于开源飞控项目 [**okalachev/flix**](https://github.com/okalachev/flix) v1.2（约 2100 行 Arduino 代码的教学级 ESP32 四轴）的社区魔改源码，复刻嘉立创 OSHWHub 开源工程「[ESP32迷你无人机](https://oshwhub.com/malagis/esp32-mini-plane)」**V1.4 PCB**：ESP32 + GY-521（MPU6050）+ 空心杯电机 + MOSFET 驱动，通过 **WiFi 热点 + QGroundControl 手机虚拟摇杆**飞行。
 
@@ -103,16 +103,16 @@ flowchart LR
 
 ## ✅ 复刻进度
 
-- [ ] 电源链路焊接与验证（BAT+/GND 短路检查、电池座极性）
-- [ ] 确认 R12 短接（未装 5V 升压模块时必须）
-- [ ] ESP32 DevKit 烧录固件成功
-- [ ] MPU6050 接入识别（`imu` 命令报 1000Hz、landed 标志正常翻转）
-- [ ] 加速度计六面校准（`ca`）
-- [ ] 四路 MOSFET 驱动电路
-- [ ] 无桨逐个电机测试并核对转向
-- [ ] （可选）SBUS 接收机接入与 `cr` 八步标定
-- [ ] 整机组装，最后装桨
-- [ ] QGC 虚拟摇杆悬停首飞
+- [x] 电源链路焊接与验证（BAT+/GND 短路检查、电池座极性）
+- [x] 确认 R12 短接（未装 5V 升压模块时必须）
+- [x] ESP32 DevKit 烧录固件成功
+- [x] MPU6050 接入识别（`imu` 命令报 1000Hz、landed 标志正常翻转）
+- [x] 加速度计六面校准（`ca`）
+- [x] 四路 MOSFET 驱动电路
+- [x] 无桨逐个电机测试并核对转向
+- [x] （可选）SBUS 接收机接入与 `cr` 八步标定
+- [x] 整机组装，最后装桨
+- [x] QGC 虚拟摇杆悬停首飞
 
 ## ⛑️ 安全须知
 

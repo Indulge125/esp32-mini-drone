@@ -8,6 +8,9 @@ downloads/
 # 上游 CI 工作流：引用不存在的 flix/ 目录，保持排除以避免 Actions 持续失败
 source/flix-v1.2-20260325/.github/
 
+# 运行时数据：飞行日志 CSV 由 analysis/flix_tuning.py 生成
+analysis/logs/
+
 # 临时与系统文件
 /.zcode/
 __pycache__/

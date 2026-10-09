@@ -50,12 +50,45 @@
 
 ```mermaid
 flowchart LR
-    A["MPU6050<br/>I²C · 1kHz"] --> B["姿态估计<br/>四元数互补滤波"]
-    B --> C["角度环<br/>最大倾斜 ±30°"]
-    C --> D["角速率环<br/>串级 PID · ±360°/s"]
-    R["SBUS 遥控<br/>UART2 RX16/TX17"] --> C
-    W["QGroundControl<br/>WiFi UDP 14550"] --> C
-    D --> E["X 型混控"] --> F["LEDC PWM ×4<br/>78kHz / 10bit"] --> G["MOSFET<br/>空心杯电机×4"]
+    subgraph IN["输入"]
+        direction TB
+        IMU["<b>MPU6050</b><br/>I²C · 1 kHz"]
+        RC["<b>SBUS 遥控</b><br/>UART2 · RX16 / TX17"]
+        GCS["<b>QGroundControl</b><br/>WiFi UDP 14550"]
+    end
+
+    subgraph CTRL["控制律"]
+        direction TB
+        ATT["<b>姿态估计</b><br/>四元数互补滤波"]
+        ANG["<b>角度环</b><br/>最大倾斜 ±30°"]
+        RATE["<b>角速率环</b><br/>串级 PID · ±360°/s"]
+        MIX["<b>X 型混控</b>"]
+        ATT ==> ANG ==> RATE ==> MIX
+    end
+
+    subgraph OUT["执行"]
+        direction TB
+        PWM["<b>LEDC PWM ×4</b><br/>78 kHz / 10 bit"]
+        MOT["<b>MOSFET</b><br/>空心杯电机 ×4"]
+        PWM ==> MOT
+    end
+
+    IMU ==> ATT
+    RC  ==> ANG
+    GCS ==> ANG
+    MIX ==> PWM
+
+    classDef inp fill:#eff6ff,color:#1e3a8a,stroke:#3b82f6,stroke-width:1.5px
+    classDef ctl fill:#f0fdf4,color:#166534,stroke:#22c55e,stroke-width:1.5px
+    classDef out fill:#fff7ed,color:#9a3412,stroke:#f97316,stroke-width:1.5px
+
+    class IMU,RC,GCS inp
+    class ATT,ANG,RATE,MIX ctl
+    class PWM,MOT out
+
+    style IN   fill:#f8fbff,stroke:#93c5fd,stroke-width:1px
+    style CTRL fill:#f7fef9,stroke:#86efac,stroke-width:1px
+    style OUT  fill:#fffbf5,stroke:#fdba74,stroke-width:1px
 ```
 
 ## 🔩 硬件方案（V1.4 PCB）
